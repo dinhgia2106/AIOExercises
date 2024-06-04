@@ -13,4 +13,5 @@ def MD_nRE(m):
 
 m = int(input("Number of samples: "))
 
-MD_nRE(m)
+if __name__ == "__main__":
+    MD_nRE(m)
