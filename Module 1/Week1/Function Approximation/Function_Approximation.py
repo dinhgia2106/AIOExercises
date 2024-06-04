@@ -25,4 +25,6 @@ def approx_cal(x, n):
 
 x = float(input("X = "))
 n = int(input("n = "))
-approx_cal(x, n)
+
+if __name__ == "__main__":
+    approx_cal(x, n)
