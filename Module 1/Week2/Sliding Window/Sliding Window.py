@@ -3,15 +3,12 @@ k = 3
 
 
 def max_sliding_window(k):
-    output = []
-    max_num = min(num_list)
+    max_num = []
     for i in range(len(num_list)):
-        if i <= len(num_list) - 3:
-            for n in range(i, k + i):
-                if num_list[n] > max_num:
-                    max_num = num_list[n]
-            output.append(max_num)
-    print(output)
+        if i <= len(num_list) - k:
+            max_num.append(max(num_list[i:k + i]))
+
+    print(max_num)
 
 
 if __name__ == "__main__":
