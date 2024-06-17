@@ -1,19 +1,24 @@
 def levenshtein_distance(source, target):
-    M = len(source)
-    N = len(target)
-    D = [[0] * (N + 1) for _ in range(M + 1)]
+    if len(source) < len(target):
+        return levenshtein_distance(target, source)
 
-    for i in range(1, M + 1):
-        n = i - 1
-        D[i][0] = source[n]
-    for j in range(1, N + 1):
-        k = j - 1
-        D[0][j] = target[k]
+    if len(target) == 0:
+        return len(source)
 
-    print(D)
+    previous_row = range(len(target) + 1)
+    for i, c1 in enumerate(source):
+        current_row = [i + 1]
+        for j, c2 in enumerate(target):
+            insertions = previous_row[j + 1] + 1
+            deletions = current_row[j] + 1
+            substitutions = previous_row[j] + (c1 != c2)
+            current_row.append(min(insertions, deletions, substitutions))
+        previous_row = current_row
+
+    return previous_row[-1]
 
 
-source = "yu"
-target = "you"
-distance = levenshtein_distance(source, target)
-# test
+source = "Tra Dinh Aig"
+target = "Tran Dinh Gia"
+print(f"Levenshtein distance between '{source}' and '{
+      target}' is {levenshtein_distance(source, target)}")
