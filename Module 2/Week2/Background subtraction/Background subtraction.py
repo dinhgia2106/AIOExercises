@@ -2,13 +2,16 @@ import numpy as np
 import cv2
 
 # Load and resize images
-bg1_image = cv2.imread('GreenBackground.png', 1)
+bg1_image = cv2.imread(
+    r'E:\AIOExercises\Module 2\Week2\Background subtraction\GreenBackground.png', 1)
 bg1_image = cv2.resize(bg1_image, (678, 381))
 
-ob_image = cv2.imread('Object.png', 1)
+ob_image = cv2.imread(
+    r'E:\AIOExercises\Module 2\Week2\Background subtraction\Object.png', 1)
 ob_image = cv2.resize(ob_image, (678, 381))
 
-bg2_image = cv2.imread('NewBackground.jpg', 1)
+bg2_image = cv2.imread(
+    r'E:\AIOExercises\Module 2\Week2\Background subtraction\NewBackground.jpg', 1)
 bg2_image = cv2.resize(bg2_image, (678, 381))
 
 
@@ -24,7 +27,7 @@ def compute_difference(bg_img, input_img):
 def compute_binary_mask(difference_single_channel):
     # Apply a binary threshold to get a binary mask
     _, difference_binary = cv2.threshold(
-        difference_single_channel, 50, 255, cv2.THRESH_BINARY)
+        difference_single_channel, 75, 255, cv2.THRESH_BINARY)
 
     return difference_binary
 
@@ -46,4 +49,7 @@ def replace_background(bg1_image, bg2_image, ob_image):
 final_output = replace_background(bg1_image, bg2_image, ob_image)
 
 # Display the final output
-cv2.imshow(final_output)
+cv2.imshow('Image Window', final_output)
+
+cv2.waitKey(0)  # 0 means wait indefinitely for a key press
+cv2.destroyAllWindows()
